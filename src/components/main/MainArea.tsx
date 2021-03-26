@@ -11,8 +11,15 @@ import '../../assets/main.css'
 export const MainArea = () => {
 
   return (
-    <SplitterLayout className="h-full w-full" percentage vertical>
-      <SplitterLayout>
+    <SplitterLayout
+      className="h-full w-full"
+      primaryIndex={0}
+      percentage
+      vertical
+      onDragEnd={() => window.dispatchEvent(new Event('resize'))}>
+      <SplitterLayout
+        primaryIndex={0}
+        onDragEnd={() => window.dispatchEvent(new Event('resize'))}>
         <JsonEditor className="h-full overflow-auto" />
         <FilteredJsonView className="h-full overflow-auto" />
       </SplitterLayout>

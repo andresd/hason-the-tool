@@ -36,14 +36,15 @@ export const FilteredJsonView = (props: FilteredJsonViewProps) => {
       return
     }
     const filter = json.filter
+    const showSiblings = json.showSiblings
     if (filter) {
-      filterBy(filter)
+      filterBy(filter, showSiblings)
     } else {
       setText(content)
     }
   }, [filters])
 
-  const filterBy = (filter: any) => {
+  const filterBy = (filter: any, showSiblings: boolean) => {
     const pickByCondition = (value: any, key: string | number) => {
       if (Array.isArray(filter) && filter.length > 0) {
         return filter.some((current) => {
@@ -59,7 +60,7 @@ export const FilteredJsonView = (props: FilteredJsonViewProps) => {
     }
     const unfilteredObject = safeJsonParse(content)
 
-    const result = filterDeep(unfilteredObject, (value, key, parent) => pickByCondition(value, key), {condense: true})
+    const result = filterDeep(unfilteredObject, (value, key, parent) => pickByCondition(value, key), { condense: !showSiblings })
     setText(JSON.stringify(result ?? {}, null, 2))
   }
 

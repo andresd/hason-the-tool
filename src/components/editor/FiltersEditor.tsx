@@ -17,6 +17,7 @@ export const FiltersEditor = (props: FiltersEditorProps) => {
   const [filters, setFilters] = useRecoilState(currentFiltersJsonState)
 
   const [filterTable, setFilterTable] = useState<FilterRow[]>([{ isCheck: true, key: '', value: '' }])
+  const [showSiblings, setShowSiblings] = useState(false)
 
   useEffect(() => {
     const filtersStr = filterTable
@@ -30,9 +31,9 @@ export const FiltersEditor = (props: FiltersEditorProps) => {
           return JSON.stringify(row.key)
         }
       }).join(',')
-    console.log(`{"filter": [${filtersStr}]}`)
-    setFilters(isEmpty(filtersStr) ? '' : `{"filter": [${filtersStr}]}`)
-  }, [filterTable])
+    console.log(`{"filter": [${filtersStr}], showSiblings: ${showSiblings}}`)
+    setFilters(isEmpty(filtersStr) ? '' : `{"filter": [${filtersStr}]${showSiblings ? `, showSiblings: ${showSiblings}`: ''}}`)
+  }, [filterTable, showSiblings])
 
   const updateFilterRow = (key: string, value: string, isCheck: boolean, index: number) => {
     let adaptedValue: any = value
@@ -79,6 +80,12 @@ export const FiltersEditor = (props: FiltersEditorProps) => {
   return (
     <Suspense fallback={<p>WTF?</p>}>
       <div className="flex flex-col w-full h-full" style={{ backgroundColor: '#2d2d2d', color: 'white' }}>
+        <div className="flex flex-row w-full">
+          <label>
+            <input name="showSiblings" checked={showSiblings} onChange={() => setShowSiblings(!showSiblings)} type="checkbox" className="flex-initial m-2" />
+            Show Siblings
+          </label>
+        </div>
         <div className="flex flex-row w-full">
           <div className="flex-1">Property</div>
           <div className="flex-1">Value</div>

@@ -6,6 +6,7 @@ import 'ace-builds/src-noconflict/mode-json'
 import 'ace-builds/src-noconflict/theme-terminal'
 import '../../assets/main.css'
 import classNames from 'classnames'
+import { set } from 'lodash'
 
 interface JsonRawEditorProps extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
@@ -21,16 +22,16 @@ export const JsonRawEditor = (props: JsonRawEditorProps) => {
   }
 
   return (
-    <div className={classNames('h-full bg-gray-700', className)}>
-      <AceEditor
-        mode="json"
-        value={text}
-        onChange={onValueChange}
-        theme="terminal"
-        width="100%"
-        height="100%"
-        style={{ background: '#2d2d2d'}}
-      />
-    </div>
+    <AceEditor
+      mode="json"
+      value={text}
+      onChange={onValueChange}
+      theme="terminal"
+      width="100%"
+      height="100%"
+      editorProps={{ $blockScrolling: true }}
+      style={{ background: '#2d2d2d' }}
+      setOptions={{ autoScrollEditorIntoView: true }}
+    />
   )
 }
