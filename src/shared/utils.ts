@@ -15,3 +15,16 @@ export const stripHtml = (html: string) => {
   tmp.innerHTML = html
   return tmp.textContent || tmp.innerText || ''
 }
+
+export const anyToBoolean = (value: any) => {
+  if (typeof value === 'number') {
+    return value !== 0 ? true : false
+  } else {
+    const strValue = value?.toString().toLowerCase().trim()
+    if (strValue === 'true' || strValue === 'yes' || strValue === '1') {
+      return true
+    }
+  }
+  return false
+}
+
