@@ -65,7 +65,7 @@ module.exports = {
             "error",
             "always"
         ],
-        "indent": ["error", 2],
+        "indent": ["error", 2, {"SwitchCase": 1}],
         "semi": ["error", "never"],
         "no-bitwise": "error",
         "no-cond-assign": "error",

@@ -3,6 +3,6 @@ import lodash from 'lodash'
 
 export const currentFiltersJsonState = atom<string>({
   key: 'currentFiltersJsonState',
-  default: ''
+  default: ('')
 })
 
