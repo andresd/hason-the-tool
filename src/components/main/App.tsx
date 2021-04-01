@@ -9,7 +9,7 @@ dotenv.config()
 
 const App = () => {
   useEffect(() => {
-    ga.pageView('/')
+    ga.pageview('/')
   }, [])
 
   return (
