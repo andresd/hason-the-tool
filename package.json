@@ -10,6 +10,7 @@
     "classnames": "^2.2.6",
     "dayjs": "^1.10.4",
     "deepdash-es": "^5.3.5",
+    "dotenv": "^8.2.0",
     "lodash": "^4.17.21",
     "react": "^17.0.1",
     "react-ace": "^9.3.0",
@@ -23,6 +24,7 @@
     "recoilize": "^1.0.0",
     "sanitize-html": "^2.3.2",
     "typescript": "^4.2.3",
+    "universal-ga": "^1.2.0",
     "web-vitals": "^1.1.0"
   },
   "devDependencies": {
